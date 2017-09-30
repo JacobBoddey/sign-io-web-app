@@ -1,0 +1,5 @@
+{
+    "require": {
+        "magium/active-directory": "^1.0"
+    }
+}
