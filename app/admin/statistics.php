@@ -44,18 +44,14 @@ if (!isAdmin( $entity->getPreferredUsername() )) {
 	
 	<div class="main-block" style="margin-top:84px;">
 	 
-		<h4 style="display:inline" class="text">Today's Activity</h4>
-		
-		<div class="button" style="float:right;padding:5px 10px 5px 10px" onclick="window.print();">Print</div>
+		<h4 class="text">Viewing Admins</h4>
 		
 		<table style="width:100%">
-			<col width="10%">
-			<col width="35%">
+			<col width="80%">
 			<col width="20%">
 			<tr>
-				<th style="text-align:left" class="text">Time</th>
 				<th style="text-align:left" class="text">Name</th>
-				<th style="text-align:left" class="text">Status</th>
+				<th><img width=15px src="../../img/delete.png"></img></th>
 			<tr>
 			<?php
 			
@@ -65,13 +61,11 @@ if (!isAdmin( $entity->getPreferredUsername() )) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
 
-				$sql = "SELECT * FROM students WHERE TIME >= CURDATE() ORDER BY TIME DESC";
+				$sql = "SELECT * FROM admins";
 				$result = mysqli_query($conn, $sql);
 
 				while ($row = mysqli_fetch_array($result)) {
-					$time = strtotime($row['TIME']);
-					$timeFormat = date("H:i", $time);
-					echo '<tr><td class="text">' . $timeFormat . '</td><td class="text">' . $row['NAME'] . '</td><td class="text">' . strtoupper($row['STATUS']) . '</td></tr>';
+					echo '<tr><td class="text">' . $row['NAME'] . '</td><td style="text-align:center;"><a href="delete-admin.php?email=' . $row['EMAIL'] . '"><img width=15px src="../../img/delete.png"></img></a></td></tr>';
 				}
 
 				mysqli_close($conn);
@@ -79,8 +73,14 @@ if (!isAdmin( $entity->getPreferredUsername() )) {
 			?>
 		</table>
 		
-		<br>
-		
+		<h4 class="text">Add a new admin</h4>
+		<form method="POST" action="add-admin.php">
+			<input class="textbox" id="admin-name" name="admin-name" type="text" placeholder="Name">
+			<input class="textbox" id="admin-email" name="admin-email" type="text" placeholder="Email">
+			<button type="submit" style="font-size:15px;margin-top:10px;display:block;" class="button">Add</button>
+		</form>
+
 	</div>
+
 		
 </body>

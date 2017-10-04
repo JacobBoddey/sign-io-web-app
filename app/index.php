@@ -98,8 +98,6 @@ if (isset($_GET['code'])) {
 				<input type="hidden" name="name" value="<?php echo $entity->getName(); ?>">
 		
 			</center>
-	
-			<br>
 			
 			<?php 
 				if ( $verified ) {
@@ -124,9 +122,37 @@ if (isset($_GET['code'])) {
 	
 	<div id="side-navigation" class="side-navigation">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<div class="button" style="text-align:center;width:100%;padding: 10 0 20 0;position:absolute;bottom:64"><a href="../logout" style="text-decoration: none;color:white;">Logout</a></div>
+		<div class="button" style="text-align:center;width:100%;padding: 10 0 20 0;position:absolute;bottom:55"><a href="../logout" style="text-decoration: none;color:white;">Logout</a></div>
 	</div>
-		
+	
+	<?php 
+	    if (isNew($entity->getPreferredUsername())) {
+			echo '
+				<div id="welcome-modal" class="welcome-modal">
+					<center>
+					<div class="welcome-modal-content">
+						<form action="set-form.php" method="POST">
+							<h4 class="text" style="margin-top:5px;">Welcome</h4>
+							<h4 class="text" style="margin-bottom: 10px;">Enter your form:</h4>
+							<select name="user-form" id="user-form">
+								<option value="13MSM">13 MSM</option>
+								<option value="13CWT">13 CWT</option>
+								<option value="13MVY">13 MVY</option>
+								<option value="13WRN">13 WRN</option>
+							</select>
+							<input id="user-name" name="user-name" type="hidden" value="' . $entity->getName() . '">
+							<input id="email" name="email" type="hidden" value="' . $entity->getPreferredUsername() . '">
+							<br>
+							<button style="padding: 5px 10px 5px 10px;margin-top: 15px;" type="submit" class="button">Submit</button>
+						</form>
+						<br>
+						
+					</div>
+					</center>
+				</div>
+			';
+		}
+		?>
 </body>
 
 <script>

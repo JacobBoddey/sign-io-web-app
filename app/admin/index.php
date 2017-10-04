@@ -54,7 +54,7 @@ if (!isAdmin( $entity->getPreferredUsername() )) {
 		
 		<hr><br>
 		
-		<div class="button" id="statistics" style="background-color:#008A5F;"><a style="text-decoration: none;color:white;">Statistics</a></div>
+		<div class="button" id="statistics" style="background-color:#008A5F;"><a href="statistics.php" style="text-decoration: none;color:white;">Statistics</a></div>
 		<div class="button" id="view-admins" style="background-color:#008A5F;"><a href="view-admins.php" style="text-decoration: none;color:white;">View Admins</a></div>
 	
 	</div>

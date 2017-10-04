@@ -8,7 +8,7 @@ function isActiveToday( $email ) {
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	$sql = "SELECT * FROM students WHERE EMAIL='" . $email . "' AND DATE(TIME) = CURDATE() ORDER BY TIME DESC";
+	$sql = "SELECT * FROM activity WHERE EMAIL='" . $email . "' AND DATE(TIME) = CURDATE() ORDER BY TIME DESC";
 	$result = mysqli_query($conn, $sql);
 
 	if ($result->num_rows == 0) {
@@ -31,7 +31,7 @@ function getStatus( $email ) {
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	$sql = "SELECT * FROM students WHERE EMAIL='" . $email . "' AND DATE(TIME) = CURDATE() ORDER BY TIME DESC";
+	$sql = "SELECT * FROM activity WHERE EMAIL='" . $email . "' AND DATE(TIME) = CURDATE() ORDER BY TIME DESC";
 	$result = mysqli_query($conn, $sql);
 
 	if ($result->num_rows == 0) {
@@ -102,5 +102,27 @@ function allowedToSignOut() {
 	}
 	return false;
 }
+
+function isNew( $email ) {
+
+	$conn = mysqli_connect("localhost", "chellaston", "uN9LVwdLF7", "chellaston");
+	
+	if (!$conn) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
+
+	$sql = "SELECT * FROM students WHERE lower(EMAIL)='" . strtolower($email) . "'";
+	$result = mysqli_query($conn, $sql);
+
+	if ($result->num_rows == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+	mysqli_close($conn);
+
+}	
 
 ?>

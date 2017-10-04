@@ -59,6 +59,7 @@ if (!isAdmin( $entity->getPreferredUsername() )) {
 				<th style="text-align:left" class="text">Name</th>
 				<th style="text-align:left" class="text">Status</th>
 			<tr>
+			
 			<?php
 			
 				$conn = mysqli_connect("localhost", "chellaston", "uN9LVwdLF7", "chellaston");
@@ -67,15 +68,15 @@ if (!isAdmin( $entity->getPreferredUsername() )) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
 
-				$sql = "SELECT * FROM students WHERE TIME >= CURDATE() ORDER BY TIME DESC";
+				$sql = "SELECT activity.TIME, students.NAME, students.FORM, activity.STATUS, activity.REASON FROM activity INNER JOIN students ON activity.EMAIL = students.EMAIL WHERE activity.time >= CURDATE() ORDER BY TIME DESC;";
 				$result = mysqli_query($conn, $sql);
 
+				$lastform = "";
 				while ($row = mysqli_fetch_array($result)) {
 					$time = strtotime($row['TIME']);
 					$timeFormat = date("H:i", $time);
 					echo '<tr><td class="text">' . $timeFormat . '</td><td class="text">' . $row['NAME'] . '</td><td class="text">' . strtoupper($row['STATUS']) . '</td></tr>';
 				}
-
 				mysqli_close($conn);
 			
 			?>
