@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Trebuchet MS';
+  src: asset('fonts/vendor/TrebuchetMS.ttf');
+}
+
+@import 'variables';
+
+@import '~bootstrap/scss/bootstrap';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+body {
+  font-family: 'Trebuchet MS';
+}
+
+.bg-primary {
+  background-color: #008A5F !important;
+}
+
+.navbar-dark .navbar-toggler {
+  border: none !important;
+  color: white !important;
+}
+
+.navbar-brand {
+  padding-left: 15px;
+  font-size: 20px !important;
+}
+
+.navbar-icon {
+  font-size: 26px;
+  color: white;
+}
+
+.navbar {
+  justify-content: left !important;
+}
+
+.time-block {
+  height: 150px;
+  background-color: #01B26B;
+  text-align: center;
+  padding-top: 18px;
+  color: white;
+  font-size: 64px;
+}
+
+.alert {
+  border: none !important;
+  border-radius: 0 !important;
+  background: none !important;
+}
+
+.alert-danger {
+  border-left: 8px solid #fc6c68 !important;
+  background-color: #f9d6d5 !important;
+}
+
+.alert-success {
+  border-left: 8px solid #1cae00 !important;
+  background-color: #a5f9ab !important;
+}
+
+.button {
+  background-color: #008A5F;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  display: inline-block;
+  font-size: 17px;
+  border: none;
+}
+
+.form-control {
+  border-radius: 0 !important;
+}
